@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/5cdd6224ca.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
 
@@ -11,46 +12,66 @@
 <body>
     <!--Nav Bar / Heading-->
     <nav class="navbar navbar-dark bg-dark ">
-        <span class="navbar-brand mb-0 h1 mx-auto">Weather Dashboard</span>
+        <span class="navbar-brand mb-0 h1 mx-auto font-weight-bolder">Weather Dashboard</span>
     </nav>
 
 
     <!--Content Grid-->
     <div class="container pt-1">
-        <div class="row border border-dark">
-          <div class="col-12">
-            <div class="row">
+        <div class="row">
+            <div class="col-4 bg-light">
                 <!--Left Column-->
-                <div class="col-4 border border-dark">
-                    <!--Search Form-->
-                    <div class="card">
-                        <h3 class="card-header">Search for a City:</h3>
-                        <form id="user-form" class="card-body">
-                          <input name="city" id="city" type="text" autofocus="true" class="form-input" />
-                          <button type="submit" class="btn btn-primary">Search</button>
-                        </form>
-                      </div>
-                    
-                    <!--Previous Searches-->
-                    <table class="table">
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col">Previous Searches</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row"></th>
-                          </tr>
-                        </tbody>
-                      </table>
+                <!--Search Form-->
+                <div class="card">
+                    <h3 class="card-header">Search for a City:</h3>
+                    <form id="user-form" class="card-body">
+                        <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>  
+                <!--Previous Searches-->
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                        <th scope="col">Previous Searches</th>
+                        </tr>
+                    </thead>
+                    <!--You might need to generate this? May need something easier...-->
+                    <tbody>
+                        <tr>
+                        <th scope="row">City 1</th>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                        <th scope="row">City 1</th>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                        <th scope="row">City 1</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--Right Column-->
+            <div class="col-8">
+                <div class="row border">
+                    <div class="col p-3">
+                        <h4>Searched City Name</h3>
+                        <h6>Temperature:</h6>
+                        <h6>Humidity:</h6>
+                        <h6>Wind Speed:</h6>
+                        <h6>UV Index:</h6>
+                    </div>
                 </div>
-                <!--Right Column-->
-                <div class="col-8 border border-dark">
-                    Weather info area
+                <div class="row">
+                    <div class="col p-3">
+                        <h4>5-Day Forecast:</h4>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
       </div>
 
