@@ -9,8 +9,50 @@
 
 </head>
 <body>
-    
+    <!--Nav Bar / Heading-->
+    <nav class="navbar navbar-dark bg-dark ">
+        <span class="navbar-brand mb-0 h1 mx-auto">Weather Dashboard</span>
+    </nav>
 
+
+    <!--Content Grid-->
+    <div class="container pt-1">
+        <div class="row border border-dark">
+          <div class="col-12">
+            <div class="row">
+                <!--Left Column-->
+                <div class="col-4 border border-dark">
+                    <!--Search Form-->
+                    <div class="card">
+                        <h3 class="card-header">Search for a City:</h3>
+                        <form id="user-form" class="card-body">
+                          <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                          <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                      </div>
+                    
+                    <!--Previous Searches-->
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Previous Searches</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row"></th>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <!--Right Column-->
+                <div class="col-8 border border-dark">
+                    Weather info area
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
