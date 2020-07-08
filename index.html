@@ -19,56 +19,37 @@
     <!--Content Grid-->
     <div class="container pt-1">
         <div class="row">
+            <!--Left Column-->
             <div class="col-4 bg-light">
-                <!--Left Column-->
                 <!--Search Form-->
                 <div class="card">
                     <h3 class="card-header">Search for a City:</h3>
                     <form id="user-form" class="card-body">
                         <input name="city" id="city" type="text" autofocus="true" class="form-input" />
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <button type="submit" id="searchBtn" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>  
                 <!--Previous Searches-->
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                        <th scope="col">Previous Searches</th>
-                        </tr>
-                    </thead>
-                    <!--You might need to generate this? May need something easier...-->
-                    <tbody>
-                        <tr>
-                        <th scope="row">City 1</th>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                        <th scope="row">City 1</th>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                        <th scope="row">City 1</th>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="btn-group-vertical w-100">
+                    <!-- <button type="button" class="btn border btn-light">Atlanta</button> -->
+                </div>
             </div>
 
             <!--Right Column-->
             <div class="col-8">
-                <div class="row border">
-                    <div class="col p-3">
-                        <h4>Searched City Name</h3>
+                <div class="row ">
+                    <div id="city-data" class="col p-3">
+                        <!-- Maybe generate this whole thing???-->
+                        <!-- <h4>Searched City Name</h4>
                         <h6>Temperature:</h6>
                         <h6>Humidity:</h6>
                         <h6>Wind Speed:</h6>
-                        <h6>UV Index:</h6>
+                        <h6>UV Index:</h6> -->
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col p-3">
-                        <h4>5-Day Forecast:</h4>
+                    <div id="five-day" class="col p-3">
+                        <!-- <h4>5-Day Forecast:</h4> -->
                     </div>
                 </div>
             </div>
