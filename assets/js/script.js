@@ -1,6 +1,8 @@
 var search = document.querySelector("#user-form");
 var cityInput = document.querySelector("#city");
 var cityInfoContainer = document.querySelector("#city-data");
+var today = new Date();
+var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 
 // function when button is clicked
 var weatherSearch = function(event) {
@@ -20,7 +22,7 @@ var weatherSearch = function(event) {
 // function to call weather info for the submitted cityName
 var getWeatherData = function(cityName) {
     // format the openWeather api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1&units=imperial";
 
     // make the request
     fetch(apiUrl).then(function(response) {
@@ -44,8 +46,19 @@ var displayWeatherData = function(info, cityName) {
 
     // create cityName Heading
     var nameTitle = document.createElement("h4");
-    nameTitle.textContent= cityName;
+    nameTitle.textContent = cityName + " (" + date + ")";
     cityInfoContainer.appendChild(nameTitle);
+
+    // create and display temperature
+    var tempDisplay = document.createElement("h6");
+    tempDisplay.textContent = "Temperature: " + info.main.temp + "\u00B0";
+    cityInfoContainer.appendChild(tempDisplay);
+
+    // create and display humidity
+
+    // create and display windspeed
+
+    // create and display uv index
 
 };
 
