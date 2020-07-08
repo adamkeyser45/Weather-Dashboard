@@ -1,8 +1,9 @@
 var search = document.querySelector("#user-form");
 var cityInput = document.querySelector("#city");
 var cityInfoContainer = document.querySelector("#city-data");
+var fiveDayContainer = document.querySelector("#five-day");
 var today = new Date();
-var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
 // function when button is clicked
 var weatherSearch = function(event) {
@@ -13,13 +14,14 @@ var weatherSearch = function(event) {
     // check if the name is good
     if (cityName) {
         getWeatherData(cityName);
+        get5Day(cityName);
         search.value = "";
     } else {
         alert("Please enetr an actual city name");
     }
 };
 
-// function to call weather info for the submitted cityName
+// function to call CURRENT weather info for the submitted cityName
 var getWeatherData = function(cityName) {
     // format the openWeather api url
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1&units=imperial";
@@ -36,6 +38,24 @@ var getWeatherData = function(cityName) {
         }
     });
 };
+
+// function to call 5-DAY FORECAST for the submitted cityName
+var get5Day = function(cityName) {
+    // format the openweather api url NOTE THIS IS HARDCODED FOR ATLANTA
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1";
+
+    // make the request
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                display5Day(data, cityName);
+                });
+        } else {
+                alert("Error: " + response.statusText);
+        }
+    });
+};
+
 
 // function to display weather information to the page
 var displayWeatherData = function(info, cityName) {
@@ -97,8 +117,18 @@ var displayWeatherData = function(info, cityName) {
             uvDisplay.classList.add("text-danger");
         };
     };
-
 };
 
+// function to display 5-day forecast information to the page
+var display5Day = function(info, cityName) {
+
+    // clear area before adding new cards
+    fiveDayContainer.textContent = "";
+
+    // create heading
+    var fiveDayHead = document.createElement("h4");
+    fiveDayHead.textContent = "5-Day Forecast:";
+    fiveDayContainer.appendChild(fiveDayHead);
+};
 
 search.addEventListener("submit", weatherSearch);
