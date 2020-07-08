@@ -55,8 +55,14 @@ var displayWeatherData = function(info, cityName) {
     cityInfoContainer.appendChild(tempDisplay);
 
     // create and display humidity
+    var humidityDisplay = document.createElement("h6");
+    humidityDisplay.textContent = "Humidity: " + info.main.humidity + "%";
+    cityInfoContainer.appendChild(humidityDisplay);
 
     // create and display windspeed
+    var windSpeedDisplay = document.createElement("h6");
+    windSpeedDisplay.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+    cityInfoContainer.appendChild(windSpeedDisplay);
 
     // create and display uv index
 
