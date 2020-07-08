@@ -40,6 +40,8 @@ var getWeatherData = function(cityName) {
 // function to display weather information to the page
 var displayWeatherData = function(info, cityName) {
 
+    cityInfoContainer.classList.add("border");
+
     // clear the search area
     cityInfoContainer.textContent = "";
     cityInput.value = "";
@@ -64,7 +66,31 @@ var displayWeatherData = function(info, cityName) {
     windSpeedDisplay.textContent = "Wind Speed: " + info.wind.speed + " MPH";
     cityInfoContainer.appendChild(windSpeedDisplay);
 
-    // create and display uv index
+    // fetch, create, and display uv index
+    var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=67b88f2f59e65e9ba6289a668ea0e4b1&lat=" + info.coord.lat + "&lon=" + info.coord.lon;
+
+    fetch(uvUrl).then(function(response) {
+        response.json().then(function(data) {
+            displayUv(data);
+            });
+    });
+
+    var displayUv = function(info) {
+        var uvDisplay = document.createElement("h6");
+        uvDisplay.textContent = "UV Index: " + info.value;
+        cityInfoContainer.appendChild(uvDisplay);
+
+        // apply color to uv index to indicate favorable, moderate, or severe
+        if (info.value <= 3) {
+            uvDisplay.classList.add("text-success");
+        } 
+        else if ((info.value > 3) && (info.value < 8)) {
+            uvDisplay.classList.add("text-warning");
+        }
+        else if (info.value >= 9) {
+            uvDisplay.classList.add("text-danger");
+        };
+    };
 
 };
 
