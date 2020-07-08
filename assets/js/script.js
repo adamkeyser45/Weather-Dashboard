@@ -48,8 +48,14 @@ var displayWeatherData = function(info, cityName) {
 
     // create cityName Heading
     var nameTitle = document.createElement("h4");
-    nameTitle.textContent = cityName + " (" + date + ")";
+    nameTitle.textContent = cityName + " (" + date + ") ";
     cityInfoContainer.appendChild(nameTitle);
+
+        // create span to hold icon of weather and add it on
+        var imgSpan = document.createElement("img");
+        var iconUrl = "http://openweathermap.org/img/wn/" + info.weather[0].icon + ".png";
+        imgSpan.setAttribute("src", iconUrl);
+        nameTitle.appendChild(imgSpan);
 
     // create and display temperature
     var tempDisplay = document.createElement("h6");
