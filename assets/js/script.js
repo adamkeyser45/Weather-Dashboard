@@ -7,6 +7,7 @@ var cardDeck = document.querySelector("#cardDeck");
 var btnGroup = document.querySelector("#btn-group");
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+var prevSearches = [];
 
 // function when button is clicked
 var weatherSearch = function(event) {
@@ -227,6 +228,10 @@ var previousSearchBtn = function(city) {
     cityBtn.textContent = city;
     btnGroup.appendChild(cityBtn);
 
+    // pushes btn id to prevSearches array and save the array to localStorage
+    prevSearches.push(city);
+    savePrevSearches();
+
 };
 
 // function to handle previousSearchBtn clicks
@@ -239,7 +244,21 @@ var previousSearchBtnHandler = function(event) {
 
 };
 
+var savePrevSearches = function() {
+    localStorage.setItem("prevSearches", JSON.stringify(prevSearches));
+};
 
+// var loadPrevSearches = function() {
+//     // get prevSearches from localStorage and convert to array of objects
+//     prevSearches = localStorage.getItem("prevSearches");
+//     if (prevSearches === null) {
+//         prevSearches = [];
+//         return false;
+//     }
+//     prevSearches = JSON.parse(prevSearches);
+
+// };
 
 search.addEventListener("submit", weatherSearch);
 btnGroup.addEventListener("click", previousSearchBtnHandler);
+// loadPrevSearches();
