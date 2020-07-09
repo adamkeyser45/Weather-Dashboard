@@ -12,7 +12,6 @@ var prevSearches = [];
 // function when button is clicked
 var weatherSearch = function(event) {
     event.preventDefault();
-
     var cityName = cityInput.value.trim();
     
     // check if the name is good
@@ -46,7 +45,7 @@ var getWeatherData = function(cityName) {
 
 // function to call 5-DAY FORECAST for the submitted cityName
 var get5Day = function(cityName) {
-    // format the openweather api url NOTE THIS IS HARDCODED FOR ATLANTA
+    // format the openweather api url
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1&units=imperial";
 
     // make the request
@@ -60,7 +59,6 @@ var get5Day = function(cityName) {
         }
     });
 };
-
 
 // function to display weather information to the page
 var displayWeatherData = function(info, cityName) {
@@ -126,7 +124,6 @@ var displayWeatherData = function(info, cityName) {
 
 // function to display 5-day forecast information to the page
 var display5Day = function(info, cityName) {
-
     var date1 = (today.getMonth()+1)+'/'+(today.getDate()+1)+'/'+today.getFullYear();
     var date2 = (today.getMonth()+1)+'/'+(today.getDate()+2)+'/'+today.getFullYear();
     var date3 = (today.getMonth()+1)+'/'+(today.getDate()+3)+'/'+today.getFullYear();
@@ -211,15 +208,14 @@ var display5Day = function(info, cityName) {
         cardHum.textContent = "Humidity: " + dataArray[i].hum + "%";
         cardBody.appendChild(cardHum);
 
+        // add the info to the card and add card to the page
         card.appendChild(cardBody);
         fiveDayContainer.appendChild(card);
     }
-
 };
 
 // function to create previous search buttons
 var previousSearchBtn = function(city) {
-
     //creates a button with the city's name
     var cityBtn = document.createElement("button");
     cityBtn.setAttribute("type", "button");
@@ -231,23 +227,22 @@ var previousSearchBtn = function(city) {
     // pushes btn id to prevSearches array and save the array to localStorage
     prevSearches.push(city);
     savePrevSearches();
-
 };
 
 // function to handle previousSearchBtn clicks
 var previousSearchBtnHandler = function(event) {
-
     // get button's id and send that to getWeatherData() and get5Day()
     var citySearch = event.target.getAttribute("id");
     getWeatherData(citySearch);
     get5Day(citySearch);
-
 };
 
+// function to save searches
 var savePrevSearches = function() {
     localStorage.setItem("prevSearches", JSON.stringify(prevSearches));
 };
 
+// function to load previous searches to page
 var loadPrevSearches = function() {
     // get prevSearches from localStorage and convert to array of objects
     prevSearches = localStorage.getItem("prevSearches");
@@ -259,7 +254,6 @@ var loadPrevSearches = function() {
 
     // loop through array and create buttons for previous searches
     for (var i = 0; i < prevSearches.length; i++) {
-
         //creates a button with the city's name
         var cityBtn = document.createElement("button");
         cityBtn.setAttribute("type", "button");
@@ -267,9 +261,7 @@ var loadPrevSearches = function() {
         cityBtn.classList.add("btn", "border", "btn-light");
         cityBtn.textContent = prevSearches[i];
         btnGroup.appendChild(cityBtn);
-
     };
-
 };
 
 search.addEventListener("submit", weatherSearch);
