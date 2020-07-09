@@ -76,7 +76,7 @@ var displayWeatherData = function(info, cityName) {
 
         // create span to hold icon of weather and add it on
         var imgSpan = document.createElement("img");
-        var iconUrl = "http://openweathermap.org/img/wn/" + info.weather[0].icon + ".png";
+        var iconUrl = "https://openweathermap.org/img/wn/" + info.weather[0].icon + ".png";
         imgSpan.setAttribute("src", iconUrl);
         nameTitle.appendChild(imgSpan);
 
@@ -96,7 +96,7 @@ var displayWeatherData = function(info, cityName) {
     cityInfoContainer.appendChild(windSpeedDisplay);
 
     // fetch, create, and display uv index
-    var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=67b88f2f59e65e9ba6289a668ea0e4b1&lat=" + info.coord.lat + "&lon=" + info.coord.lon;
+    var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=67b88f2f59e65e9ba6289a668ea0e4b1&lat=" + info.coord.lat + "&lon=" + info.coord.lon;
 
     fetch(uvUrl).then(function(response) {
         response.json().then(function(data) {
@@ -192,7 +192,7 @@ var display5Day = function(info, cityName) {
 
         // create weather icon img
         var cardIcon = document.createElement("img");
-        var iconUrl = "http://openweathermap.org/img/wn/" + dataArray[i].icon + ".png"
+        var iconUrl = "https://openweathermap.org/img/wn/" + dataArray[i].icon + ".png"
         cardIcon.setAttribute("src", iconUrl);
         cardBody.appendChild(cardIcon);
 
