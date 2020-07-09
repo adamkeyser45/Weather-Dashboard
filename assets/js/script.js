@@ -43,7 +43,7 @@ var getWeatherData = function(cityName) {
 // function to call 5-DAY FORECAST for the submitted cityName
 var get5Day = function(cityName) {
     // format the openweather api url NOTE THIS IS HARDCODED FOR ATLANTA
-    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=67b88f2f59e65e9ba6289a668ea0e4b1&units=imperial";
 
     // make the request
     fetch(apiUrl).then(function(response) {
@@ -164,39 +164,46 @@ var display5Day = function(info, cityName) {
     fiveDayHead.textContent = "5-Day Forecast:";
     fiveDayContainer.appendChild(fiveDayHead);
 
-    // create card div
-    var card = document.createElement("div");
-    card.classList.add("card", "text-white", "bg-primary", "m-1");
+    // loop to create cards and fill with proper info
+    for (i = 0; i < dataArray.length; i++) {
 
-    // create card-body div
-    var cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
-    
-    // create card-title
-    var cardTitle = document.createElement("h5");
-    cardTitle.classList.add("card-title");
-    cardTitle.textContent = "7/8/20";
-    cardBody.appendChild(cardTitle);
+        // create card div
+        var card = document.createElement("div");
+        card.classList.add("card", "text-white", "bg-primary", "m-1");
 
-    // create weather icon img
-    var cardIcon = document.createElement("img");
-    cardIcon.setAttribute("src", "http://openweathermap.org/img/wn/09d.png");
-    cardBody.appendChild(cardIcon);
+        // create card-body div
+        var cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
+        
+        // create card-title
+        var cardTitle = document.createElement("h5");
+        cardTitle.classList.add("card-title");
+        cardTitle.textContent = dataArray[i].day;
+        cardBody.appendChild(cardTitle);
 
-    // create card temperature
-    var cardTemp = document.createElement("p");
-    cardTemp.classList.add("card-text");
-    cardTemp.textContent = "Temp: 90.89";
-    cardBody.appendChild(cardTemp);
+        // create weather icon img
+        var cardIcon = document.createElement("img");
+        var iconUrl = "http://openweathermap.org/img/wn/" + dataArray[i].icon + ".png"
+        cardIcon.setAttribute("src", iconUrl);
+        cardBody.appendChild(cardIcon);
 
-    // create card Humidity
-    var cardHum = document.createElement("p");
-    cardHum.classList.add("card-text");
-    cardHum.textContent = "Humidity: 43%";
-    cardBody.appendChild(cardHum);
+        // create card temperature
+        var cardTemp = document.createElement("p");
+        cardTemp.classList.add("card-text");
+        cardTemp.textContent = "Temp: " + dataArray[i].temp + "\u00B0";
+        cardBody.appendChild(cardTemp);
 
-    card.appendChild(cardBody);
-    fiveDayContainer.appendChild(card);
+        // create card Humidity
+        var cardHum = document.createElement("p");
+        cardHum.classList.add("card-text");
+        cardHum.textContent = "Humidity: " + dataArray[i].hum + "%";
+        cardBody.appendChild(cardHum);
+
+        card.appendChild(cardBody);
+        fiveDayContainer.appendChild(card);
+
+    }
+
 };
 
 search.addEventListener("submit", weatherSearch);
