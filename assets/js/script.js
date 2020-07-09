@@ -248,17 +248,30 @@ var savePrevSearches = function() {
     localStorage.setItem("prevSearches", JSON.stringify(prevSearches));
 };
 
-// var loadPrevSearches = function() {
-//     // get prevSearches from localStorage and convert to array of objects
-//     prevSearches = localStorage.getItem("prevSearches");
-//     if (prevSearches === null) {
-//         prevSearches = [];
-//         return false;
-//     }
-//     prevSearches = JSON.parse(prevSearches);
+var loadPrevSearches = function() {
+    // get prevSearches from localStorage and convert to array of objects
+    prevSearches = localStorage.getItem("prevSearches");
+    if (prevSearches === null) {
+        prevSearches = [];
+        return false;
+    }
+    prevSearches = JSON.parse(prevSearches);
 
-// };
+    // loop through array and create buttons for previous searches
+    for (var i = 0; i < prevSearches.length; i++) {
+
+        //creates a button with the city's name
+        var cityBtn = document.createElement("button");
+        cityBtn.setAttribute("type", "button");
+        cityBtn.setAttribute("id", prevSearches[i])
+        cityBtn.classList.add("btn", "border", "btn-light");
+        cityBtn.textContent = prevSearches[i];
+        btnGroup.appendChild(cityBtn);
+
+    };
+
+};
 
 search.addEventListener("submit", weatherSearch);
 btnGroup.addEventListener("click", previousSearchBtnHandler);
-// loadPrevSearches();
+loadPrevSearches();
