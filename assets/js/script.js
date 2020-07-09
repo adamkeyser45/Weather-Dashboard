@@ -4,6 +4,7 @@ var cityInfoContainer = document.querySelector("#city-data");
 var fiveDayContainer = document.querySelector("#five-day");
 var fiveDayHeading = document.querySelector("#five-day-heading");
 var cardDeck = document.querySelector("#cardDeck");
+var btnGroup = document.querySelector("#btn-group");
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
@@ -17,6 +18,7 @@ var weatherSearch = function(event) {
     if (cityName) {
         getWeatherData(cityName);
         get5Day(cityName);
+        previousSearchBtn(cityName);
         search.value = "";
     } else {
         alert("Please enetr an actual city name");
@@ -130,6 +132,7 @@ var display5Day = function(info, cityName) {
     var date4 = (today.getMonth()+1)+'/'+(today.getDate()+4)+'/'+today.getFullYear();
     var date5 = (today.getMonth()+1)+'/'+(today.getDate()+5)+'/'+today.getFullYear();
 
+    // array to hold forecast information from openWeather API
     var dataArray = [
         {
             day: date1,
@@ -209,9 +212,34 @@ var display5Day = function(info, cityName) {
 
         card.appendChild(cardBody);
         fiveDayContainer.appendChild(card);
-
     }
 
 };
 
+// function to create previous search buttons
+var previousSearchBtn = function(city) {
+
+    //creates a button with the city's name
+    var cityBtn = document.createElement("button");
+    cityBtn.setAttribute("type", "button");
+    cityBtn.setAttribute("id", "prev-"+city)
+    cityBtn.classList.add("btn", "border", "btn-light");
+    cityBtn.textContent = city;
+    btnGroup.appendChild(cityBtn);
+
+};
+
+// function to handle previousSearchBtn clicks
+var previousSearchBtnHandler = function(event) {
+
+    var citySearch = event.target.getAttribute("id");
+
+    getWeatherData(cityName);
+    get5Day(cityName);
+
+};
+
+
+
 search.addEventListener("submit", weatherSearch);
+btnGroup.addEventListener("click", previousSearchBtnHandler);
