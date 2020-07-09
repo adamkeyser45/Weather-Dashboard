@@ -222,7 +222,7 @@ var previousSearchBtn = function(city) {
     //creates a button with the city's name
     var cityBtn = document.createElement("button");
     cityBtn.setAttribute("type", "button");
-    cityBtn.setAttribute("id", "prev-"+city)
+    cityBtn.setAttribute("id", city)
     cityBtn.classList.add("btn", "border", "btn-light");
     cityBtn.textContent = city;
     btnGroup.appendChild(cityBtn);
@@ -232,10 +232,10 @@ var previousSearchBtn = function(city) {
 // function to handle previousSearchBtn clicks
 var previousSearchBtnHandler = function(event) {
 
+    // get button's id and send that to getWeatherData() and get5Day()
     var citySearch = event.target.getAttribute("id");
-
-    getWeatherData(cityName);
-    get5Day(cityName);
+    getWeatherData(citySearch);
+    get5Day(citySearch);
 
 };
 
