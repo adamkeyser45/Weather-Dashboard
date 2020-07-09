@@ -124,33 +124,39 @@ var displayWeatherData = function(info, cityName) {
 // function to display 5-day forecast information to the page
 var display5Day = function(info, cityName) {
 
+    var date1 = (today.getMonth()+1)+'/'+(today.getDate()+1)+'/'+today.getFullYear();
+    var date2 = (today.getMonth()+1)+'/'+(today.getDate()+2)+'/'+today.getFullYear();
+    var date3 = (today.getMonth()+1)+'/'+(today.getDate()+3)+'/'+today.getFullYear();
+    var date4 = (today.getMonth()+1)+'/'+(today.getDate()+4)+'/'+today.getFullYear();
+    var date5 = (today.getMonth()+1)+'/'+(today.getDate()+5)+'/'+today.getFullYear();
+
     var dataArray = [
         {
-            day: "Day 1",
+            day: date1,
             icon: info.list[4].weather[0].icon,
             temp: info.list[4].main.temp,
             hum: info.list[4].main.humidity
         },
         {
-            day: "Day 2",
+            day: date2,
             icon: info.list[12].weather[0].icon,
             temp: info.list[12].main.temp,
             hum: info.list[12].main.humidity
         },
         {
-            day: "Day 3",
+            day: date3,
             icon: info.list[20].weather[0].icon,
             temp: info.list[20].main.temp,
             hum: info.list[20].main.humidity
         },
         {
-            day: "Day 4",
+            day: date4,
             icon: info.list[28].weather[0].icon,
             temp: info.list[28].main.temp,
             hum: info.list[28].main.humidity
         },
         {
-            day: "Day 5",
+            day: date5,
             icon: info.list[36].weather[0].icon,
             temp: info.list[36].main.temp,
             hum: info.list[36].main.humidity
@@ -159,6 +165,7 @@ var display5Day = function(info, cityName) {
 
     // clear area before adding new cards
     fiveDayContainer.textContent = "";
+    fiveDayHeading.textContent = "";
 
     // create heading
     var fiveDayHead = document.createElement("h4");
@@ -174,7 +181,7 @@ var display5Day = function(info, cityName) {
 
         // create card-body div
         var cardBody = document.createElement("div");
-        cardBody.classList.add("card-body");
+        cardBody.classList.add("card-body", "p-2");
         
         // create card-title
         var cardTitle = document.createElement("h5");
