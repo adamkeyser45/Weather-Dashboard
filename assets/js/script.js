@@ -2,6 +2,7 @@ var search = document.querySelector("#user-form");
 var cityInput = document.querySelector("#city");
 var cityInfoContainer = document.querySelector("#city-data");
 var fiveDayContainer = document.querySelector("#five-day");
+var cardDeck = document.querySelector("#card-deck");
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
@@ -122,6 +123,39 @@ var displayWeatherData = function(info, cityName) {
 // function to display 5-day forecast information to the page
 var display5Day = function(info, cityName) {
 
+    var dataArray = [
+        {
+            day: "Day 1",
+            icon: info.list[4].weather.icon,
+            temp: info.list[4].main.temp,
+            hum: info.list[4].main.humidity
+        },
+        {
+            day: "Day 2",
+            icon: info.list[12].weather.icon,
+            temp: info.list[12].main.temp,
+            hum: info.list[12].main.humidity
+        },
+        {
+            day: "Day 3",
+            icon: info.list[20].weather.icon,
+            temp: info.list[20].main.temp,
+            hum: info.list[20].main.humidity
+        },
+        {
+            day: "Day 4",
+            icon: info.list[28].weather.icon,
+            temp: info.list[28].main.temp,
+            hum: info.list[28].main.humidity
+        },
+        {
+            day: "Day 5",
+            icon: info.list[36].weather.icon,
+            temp: info.list[36].main.temp,
+            hum: info.list[36].main.humidity
+        }
+    ];
+
     // clear area before adding new cards
     fiveDayContainer.textContent = "";
 
@@ -129,6 +163,40 @@ var display5Day = function(info, cityName) {
     var fiveDayHead = document.createElement("h4");
     fiveDayHead.textContent = "5-Day Forecast:";
     fiveDayContainer.appendChild(fiveDayHead);
+
+    // create card div
+    var card = document.createElement("div");
+    card.classList.add("card", "text-white", "bg-primary", "m-1");
+
+    // create card-body div
+    var cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    
+    // create card-title
+    var cardTitle = document.createElement("h5");
+    cardTitle.classList.add("card-title");
+    cardTitle.textContent = "7/8/20";
+    cardBody.appendChild(cardTitle);
+
+    // create weather icon img
+    var cardIcon = document.createElement("img");
+    cardIcon.setAttribute("src", "http://openweathermap.org/img/wn/09d.png");
+    cardBody.appendChild(cardIcon);
+
+    // create card temperature
+    var cardTemp = document.createElement("p");
+    cardTemp.classList.add("card-text");
+    cardTemp.textContent = "Temp: 90.89";
+    cardBody.appendChild(cardTemp);
+
+    // create card Humidity
+    var cardHum = document.createElement("p");
+    cardHum.classList.add("card-text");
+    cardHum.textContent = "Humidity: 43%";
+    cardBody.appendChild(cardHum);
+
+    card.appendChild(cardBody);
+    fiveDayContainer.appendChild(card);
 };
 
 search.addEventListener("submit", weatherSearch);
