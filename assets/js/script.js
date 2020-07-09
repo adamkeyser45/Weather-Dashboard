@@ -2,7 +2,8 @@ var search = document.querySelector("#user-form");
 var cityInput = document.querySelector("#city");
 var cityInfoContainer = document.querySelector("#city-data");
 var fiveDayContainer = document.querySelector("#five-day");
-var cardDeck = document.querySelector("#card-deck");
+var fiveDayHeading = document.querySelector("#five-day-heading");
+var cardDeck = document.querySelector("#cardDeck");
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
@@ -126,31 +127,31 @@ var display5Day = function(info, cityName) {
     var dataArray = [
         {
             day: "Day 1",
-            icon: info.list[4].weather.icon,
+            icon: info.list[4].weather[0].icon,
             temp: info.list[4].main.temp,
             hum: info.list[4].main.humidity
         },
         {
             day: "Day 2",
-            icon: info.list[12].weather.icon,
+            icon: info.list[12].weather[0].icon,
             temp: info.list[12].main.temp,
             hum: info.list[12].main.humidity
         },
         {
             day: "Day 3",
-            icon: info.list[20].weather.icon,
+            icon: info.list[20].weather[0].icon,
             temp: info.list[20].main.temp,
             hum: info.list[20].main.humidity
         },
         {
             day: "Day 4",
-            icon: info.list[28].weather.icon,
+            icon: info.list[28].weather[0].icon,
             temp: info.list[28].main.temp,
             hum: info.list[28].main.humidity
         },
         {
             day: "Day 5",
-            icon: info.list[36].weather.icon,
+            icon: info.list[36].weather[0].icon,
             temp: info.list[36].main.temp,
             hum: info.list[36].main.humidity
         }
@@ -162,7 +163,7 @@ var display5Day = function(info, cityName) {
     // create heading
     var fiveDayHead = document.createElement("h4");
     fiveDayHead.textContent = "5-Day Forecast:";
-    fiveDayContainer.appendChild(fiveDayHead);
+    fiveDayHeading.appendChild(fiveDayHead);
 
     // loop to create cards and fill with proper info
     for (i = 0; i < dataArray.length; i++) {
