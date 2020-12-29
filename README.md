@@ -1,4 +1,4 @@
-# mod6challenge
+# Weather Dashboard
 A Server-Side API Weather Dashboard
 
 ## Description: 
